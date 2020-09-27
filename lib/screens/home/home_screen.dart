@@ -283,9 +283,27 @@ class Menu extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            child: Text('Drawer Header'),
-            decoration: BoxDecoration(
-              color: Colors.blue,
+            child: Row(
+              children: <Widget>[
+                Hero(
+                  tag: 'food',
+                  child: Container(
+                    child: Image.asset('images/food.gif'),
+                    height: 124.0,
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  'Talabatk',
+                  style: TextStyle(
+                    fontFamily: 'Pacifico',
+                    fontSize: 40.0,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
             ),
           ),
           ListTile(
