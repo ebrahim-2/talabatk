@@ -6,6 +6,7 @@ import 'package:talabatk/cartpage.dart';
 import 'package:talabatk/detail_screen.dart';
 import 'package:talabatk/screens/home/components/Drinks.dart';
 import 'package:talabatk/screens/home/components/Sandwich.dart';
+import 'package:talabatk/screens/shared/components/Menu.dart';
 
 import './components/top_header.dart';
 import './components/chicken_card.dart';
@@ -72,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       key: _scaffoldKey,
+      drawer: Menu(),
       appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.0,
@@ -141,7 +143,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: Menu(),
     );
   }
 }
@@ -264,85 +265,6 @@ class SaladTab extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Menu extends StatelessWidget {
-  const Menu({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
-      child: ListView(
-        // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Row(
-              children: <Widget>[
-                Hero(
-                  tag: 'food',
-                  child: Container(
-                    child: Image.asset('images/food.gif'),
-                    height: 124.0,
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Text(
-                  'Talabatk',
-                  style: TextStyle(
-                    fontFamily: 'Pacifico',
-                    fontSize: 40.0,
-                    color: Colors.black87,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          ListTile(
-            title: Text('Profile'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: Text('My Orders'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: Text('Favorits'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: Text('Logout'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-        ],
       ),
     );
   }
