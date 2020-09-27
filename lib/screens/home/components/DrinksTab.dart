@@ -1,15 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:talabatk/detail_screen.dart';
-import '../../../cart.dart';
-import './salad_card.dart';
-import './top_header.dart';
+import 'package:talabatk/cart.dart';
+import 'package:talabatk/screens/detail/detail_screen.dart';
+import 'SmallCard.dart';
+import 'TopHeader.dart';
 
-import '../../../cartpage.dart';
-import './chicken_card.dart';
-import './filtering.dart';
+import 'BigCard.dart';
 
-class SandwichTab extends StatelessWidget {
-  const SandwichTab(
+class DrinksTab extends StatelessWidget {
+  const DrinksTab(
       {this.addItemSnackBar,
       this.context,
       this.addNewItemToCart,
@@ -24,7 +23,7 @@ class SandwichTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
-    return SafeArea(
+    return new SafeArea(
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -39,7 +38,7 @@ class SandwichTab extends StatelessWidget {
                     height: 16,
                   ),
                   SizedBox(
-                    height: _height * 0.05,
+                    height: _height * 0.10,
                   ),
                   BigCard(
                     addItemSnackBar: addItemSnackBar,
@@ -50,19 +49,19 @@ class SandwichTab extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => DetailScreen(
                             data: data,
-                            addNewItemToCart: addNewItemToCart,
                             removeItemFromCart: removeItemFromCart,
-                            image: 'images/p1.png',
-                            price: 12.000,
-                            title: 'Pizza',
+                            addNewItemToCart: addNewItemToCart,
+                            image: 'images/h1.jpg',
+                            price: 30.00,
+                            title: 'Chicken Salad',
                           ),
                         ),
                       );
                     },
-                    title: 'Pizza',
-                    image: 'images/p1.png',
-                    price: 12,
-                    sub: 'All kinds of pizza',
+                    title: 'Chicken Salad',
+                    image: 'images/co3.png',
+                    price: 30,
+                    sub: 'Chicken with Avocado',
                   ),
                   SizedBox(
                     height: _height * 0.05,
@@ -71,27 +70,27 @@ class SandwichTab extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       SmallCard(
-                        addNewItemToCart: addNewItemToCart,
                         addItemSnackBar: addItemSnackBar,
+                        addNewItemToCart: addNewItemToCart,
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => DetailScreen(
                                 data: data,
-                                addNewItemToCart: addNewItemToCart,
                                 removeItemFromCart: removeItemFromCart,
-                                image: 'images/p3.jpg',
-                                price: 2.500,
-                                title: 'potato Fingers',
+                                addNewItemToCart: addNewItemToCart,
+                                image: 'images/mixed.png',
+                                price: 24.00,
+                                title: 'Mixed Salad',
                               ),
                             ),
                           );
                         },
-                        title: 'potato Fingers ',
-                        image: 'images/p3.jpg',
-                        price: 2.5,
-                        sub: '',
+                        title: 'Mixed Salad',
+                        image: 'images/co2.jpg',
+                        price: 24,
+                        sub: 'Mix Vegetables',
                       ),
                       SmallCard(
                         addItemSnackBar: addItemSnackBar,
@@ -102,19 +101,19 @@ class SandwichTab extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => DetailScreen(
                                 data: data,
-                                addNewItemToCart: addNewItemToCart,
                                 removeItemFromCart: removeItemFromCart,
-                                image: 'images/h3.png',
-                                price: 7.000,
-                                title: 'Burger',
+                                addNewItemToCart: addNewItemToCart,
+                                image: 'images/mixed.png',
+                                price: 24.00,
+                                title: 'Quinoa Salad',
                               ),
                             ),
                           );
                         },
-                        title: 'Burger',
-                        image: 'images/h3.png',
-                        price: 7.00,
-                        sub: 'All Kind of Burger',
+                        title: 'Quinoa Salad',
+                        image: 'images/co2.jpg',
+                        price: 24.00,
+                        sub: 'Spicy with garlic',
                       ),
                     ],
                   ),

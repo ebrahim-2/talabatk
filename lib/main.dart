@@ -1,8 +1,8 @@
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:talabatk/cartpage.dart';
-import 'package:talabatk/screens/home/components/Drinks.dart';
-import 'package:talabatk/screens/home/components/Sandwich.dart';
+import 'package:talabatk/screens/cart/cart_screen.dart';
+import 'package:talabatk/screens/home/components/DrinksTab.dart';
+import 'package:talabatk/screens/home/components/SandwichTab.dart';
 import 'package:talabatk/screens/home/home_screen.dart';
 import 'package:talabatk/screens/login/login_screen.dart';
 import 'package:talabatk/screens/register/register_screen.dart';

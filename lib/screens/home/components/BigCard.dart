@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:talabatk/cart.dart';
 
 class BigCard extends StatefulWidget {
   final String title;

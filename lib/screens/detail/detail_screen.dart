@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:talabatk/cartpage.dart';
-import 'bottom_header.dart';
-import 'card_page.dart';
-import 'cart.dart';
-import 'display_page_indicators.dart';
-import 'name_and_count.dart';
+import 'package:talabatk/screens/cart/cart_screen.dart';
+import 'components/BottomHeader.dart';
+import 'components/CardPage.dart';
+import '../../cart.dart';
+import 'components/display_page_indicators.dart';
+import 'components/NameAndCount.dart';
 
 class DetailScreen extends StatefulWidget {
   final String image;
