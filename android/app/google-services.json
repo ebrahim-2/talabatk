@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "403516002586",
+    "firebase_url": "https://talabatk-ce4e4.firebaseio.com",
+    "project_id": "talabatk-ce4e4",
+    "storage_bucket": "talabatk-ce4e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403516002586:android:2bc20f2809cac93d319ca3",
+        "android_client_info": {
+          "package_name": "com.ebrahim.talabat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403516002586-adtbeij79ed6benjvg664ksb300iq7e5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBkvT1mtQyOnp3RdPTCjKEC_R6AF4lQTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403516002586-adtbeij79ed6benjvg664ksb300iq7e5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
