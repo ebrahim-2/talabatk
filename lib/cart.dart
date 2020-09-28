@@ -1,19 +1,28 @@
 import 'package:uuid/uuid.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final firestore = FirebaseFirestore.instance;
+final firebaseUser = FirebaseAuth.instance.currentUser;
 
 var uuid = Uuid();
 
 class Cartprovider {
   List<ItemModel> cartitems = [];
-  additem(ItemModel item) {
-    cartitems.add(item);
+  additem(String title, double price) {
+    firestore.collection("users").doc(firebaseUser.uid).set({
+      "products": FieldValue.arrayUnion(
+          [ItemModel(title: title, price: price, totalPrice: price).toMap()])
+    }, SetOptions(merge: true));
   }
 
   removeItem(String id) {
-    cartitems = cartitems.where((element) => element.id != id);
+    firestore.collection("users").doc(firebaseUser.uid).update({
+      "products": FieldValue.arrayRemove([id])
+    });
   }
 }
 
-// [i, i, j, i, j]
 class ItemModel {
   String id;
   String title;
@@ -27,5 +36,16 @@ class ItemModel {
     this.totalPrice,
   }) {
     id = uuid.v4();
+  }
+
+  toMap() {
+    var customMap = {
+      "id": id,
+      "title": title,
+      "price": price,
+      "totalPrice": totalPrice
+    };
+
+    return customMap;
   }
 }

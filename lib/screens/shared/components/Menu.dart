@@ -65,7 +65,10 @@ class Menu extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Logout'),
+            title: Text(
+              'Logout',
+              style: TextStyle(color: Colors.redAccent),
+            ),
             onTap: () {
               // Update the state of the app
               // ...

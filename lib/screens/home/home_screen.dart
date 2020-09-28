@@ -1,24 +1,12 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:talabatk/cart.dart';
 import 'package:talabatk/screens/cart/cart_screen.dart';
-import 'package:talabatk/screens/detail/components/detail_screen.dart';
 import 'package:talabatk/screens/home/components/DrinksTab.dart';
 import 'package:talabatk/screens/home/components/SaladTab.dart';
 import 'package:talabatk/screens/home/components/SandwichTab.dart';
 import 'package:talabatk/screens/shared/components/Menu.dart';
 
-import 'components/TopHeader.dart';
-import 'components/BigCard.dart';
-import 'components/SmallCard.dart';
-
-// ignore: deprecated_member_use
-// final firestore = Firestore.instance;
-
-// ignore: must_be_immutable, deprecated_member_use
-// FirebaseUser loggedInUser;
-// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -26,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   var cartProvider = Cartprovider();
   // final _auth =FirebaseAuth.instance;
 
@@ -61,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   addNewItemToCart(String title, double price) {
-    cartProvider.additem(ItemModel(title: title, price: price));
+    cartProvider.additem(title, price);
   }
 
   removeItemFromCart(String id) {
