@@ -8,12 +8,24 @@ final firebaseUser = FirebaseAuth.instance.currentUser;
 var uuid = Uuid();
 
 class Cartprovider {
-  List<ItemModel> cartitems = [];
-  additem(String title, double price) {
-    firestore.collection("users").doc(firebaseUser.uid).set({
-      "products": FieldValue.arrayUnion(
-          [ItemModel(title: title, price: price, totalPrice: price).toMap()])
-    }, SetOptions(merge: true));
+  List<dynamic> cartitems = [];
+
+  Cartprovider() {
+    init();
+  }
+  init() async {
+    var doc = await firestore.collection('users').doc(firebaseUser.uid).get();
+    cartitems = doc.data()['products'];
+  }
+
+  additem(String title, double price) async {
+    var newItem =
+        ItemModel(title: title, price: price, totalPrice: price).toMap();
+    cartitems.add(newItem);
+    firestore
+        .collection("users")
+        .doc(firebaseUser.uid)
+        .set({"products": cartitems}, SetOptions(merge: true));
   }
 
   removeItem(String id) {

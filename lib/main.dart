@@ -1,20 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:talabatk/screens/home/home_screen.dart';
-import 'package:talabatk/screens/login/login_screen.dart';
-import 'package:talabatk/screens/register/register_screen.dart';
-import 'package:talabatk/screens/welcome/welcome_screen.dart';
 
+import 'screens/home/home_screen.dart';
 import 'screens/login/login_screen.dart';
 import 'screens/welcome/welcome_screen.dart';
 import 'screens/register/register_screen.dart';
 
-// import 'Drinks.dart';
-// import 'LoginScreen.dart';
-// import 'Sandwich.dart';
-
-// import 'Log1.dart';
-// import 'cartpage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,9 +34,6 @@ class MyApp extends StatelessWidget {
               length: 3,
               child: HomeScreen(),
             ),
-        // '/sandwich': (context) => Sandwich(),
-        // '/drinks': (context) => Drinks(),
-        // '/cartpage': (context) => CartPage(),
       },
     );
   }

@@ -3,7 +3,7 @@ import 'package:talabatk/screens/cart/cart_screen.dart';
 import 'components/BottomHeader.dart';
 import 'components/CardPage.dart';
 import '../../cart.dart';
-import 'components/display_page_indicators.dart';
+import 'components/DisplayPageIndicators.dart';
 import 'components/NameAndCount.dart';
 
 class DetailScreen extends StatefulWidget {
