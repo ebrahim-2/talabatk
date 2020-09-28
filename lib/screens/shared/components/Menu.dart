@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
-  const Menu({Key key}) : super(key: key);
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -56,24 +57,13 @@ class Menu extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Favorits'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
             title: Text(
               'Logout',
               style: TextStyle(color: Colors.redAccent),
             ),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
+              _auth.signOut();
+              Navigator.pushNamed(context, '/welcome');
             },
           ),
         ],

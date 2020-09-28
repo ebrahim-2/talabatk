@@ -10,8 +10,6 @@ part './components/PasswordField.dart';
 part 'components/EmailField.dart';
 part 'components/NumberField.dart';
 
-final firestoreInstance = FirebaseFirestore.instance;
-
 class RegisterScreen extends StatefulWidget {
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
@@ -19,6 +17,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _auth = FirebaseAuth.instance;
+  final firestoreInstance = FirebaseFirestore.instance;
 
   bool showSpinner = false;
   String email;
