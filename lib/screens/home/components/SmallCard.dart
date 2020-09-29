@@ -32,8 +32,9 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _controller =
-        AnimationController(duration: Duration(seconds: 1), vsync: this);
+    _controller = AnimationController(
+      duration: Duration(seconds: 1),
+    );
     _imageAnim = CurvedAnimation(parent: _controller, curve: Curves.ease);
     _controller.addListener(() {
       setState(() {});

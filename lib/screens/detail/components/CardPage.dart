@@ -19,12 +19,11 @@ class _CardPageState extends State<CardPage> with TickerProviderStateMixin {
   Animation<double> _imageAnim;
   double pageOffset = 0;
 
-
-
   @override
   void initState() {
-    _controller =
-        AnimationController(duration: Duration(seconds: 1), vsync: this);
+    _controller = AnimationController(
+      duration: Duration(seconds: 1),
+    );
     _imageAnim =
         CurvedAnimation(parent: _controller, curve: Curves.easeOutBack);
     _controller.addListener(() {
@@ -46,8 +45,6 @@ class _CardPageState extends State<CardPage> with TickerProviderStateMixin {
     _pageController.dispose();
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +112,6 @@ class _CardPageState extends State<CardPage> with TickerProviderStateMixin {
                             );
                           }),
                     ),
-                   
                     Positioned(
                       top: 20,
                       right: 50,
@@ -131,7 +127,6 @@ class _CardPageState extends State<CardPage> with TickerProviderStateMixin {
                             );
                           }),
                     ),
-                    
                     Positioned(
                       bottom: 10,
                       left: -50,
@@ -139,7 +134,7 @@ class _CardPageState extends State<CardPage> with TickerProviderStateMixin {
                           animation: _imageAnim,
                           builder: (context, snapshot) {
                             return Transform.translate(
-                              offset: Offset(-500*(1-_imageAnim.value),0),
+                              offset: Offset(-500 * (1 - _imageAnim.value), 0),
                               child: Image.asset(
                                 '',
                                 width: _width / 1.5,
@@ -152,16 +147,15 @@ class _CardPageState extends State<CardPage> with TickerProviderStateMixin {
                       left: 50,
                       child: AnimatedBuilder(
                           animation: _imageAnim,
-                        builder: (context, snapshot) {
-                          return Transform.translate(
-                            offset: Offset(-500 * (1 - _imageAnim.value), 0),
-                            child: Image.asset(
-                              '',
-                              width: _width * 0.1,
-                            ),
-                          );
-                        }
-                      ),
+                          builder: (context, snapshot) {
+                            return Transform.translate(
+                              offset: Offset(-500 * (1 - _imageAnim.value), 0),
+                              child: Image.asset(
+                                '',
+                                width: _width * 0.1,
+                              ),
+                            );
+                          }),
                     ),
                   ],
                 ),
