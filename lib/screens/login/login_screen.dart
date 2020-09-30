@@ -27,30 +27,33 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.symmetric(
             horizontal: 24.0,
           ),
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 50,
-              ),
-              Header(),
-              SizedBox(
-                height: 24.0,
-              ),
-              EmailField(
-                handleChange: (value) {
-                  email = value;
-                },
-              ),
-              PasswordField(
-                handleChange: (value) {
-                  password = value;
-                },
-              ),
-              SubmitButton(
-                handleSubmit: _handleSubmit,
-                text: 'Login',
-              )
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
+                ),
+                Header(),
+                SizedBox(
+                  height: 24.0,
+                ),
+                EmailField(
+                  handleChange: (value) {
+                    email = value;
+                  },
+                ),
+                PasswordField(
+                  handleChange: (value) {
+                    password = value;
+                  },
+                ),
+                SubmitButton(
+                  handleSubmit: _handleSubmit,
+                  text: 'Login',
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -97,7 +100,7 @@ class Header extends StatelessWidget {
           'Welcome To Talbatk',
           style: TextStyle(
             fontFamily: 'Pacifico',
-            fontSize: 26.0,
+            fontSize: 20.0,
             color: Colors.black87,
             fontWeight: FontWeight.w900,
           ),

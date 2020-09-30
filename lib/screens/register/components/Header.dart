@@ -21,7 +21,7 @@ class Header extends StatelessWidget {
           'Welcome To Talbatk',
           style: TextStyle(
             fontFamily: 'Pacifico',
-            fontSize: 26.0,
+            fontSize: 20.0,
             color: Colors.black87,
             fontWeight: FontWeight.w900,
           ),

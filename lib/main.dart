@@ -6,7 +6,6 @@ import 'screens/login/login_screen.dart';
 import 'screens/welcome/welcome_screen.dart';
 import 'screens/register/register_screen.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
       //     textTheme: TextTheme(bodyText2: TextStyle(color: Colors.black87))),
 
       theme: ThemeData(fontFamily: 'Poppins'),
-      initialRoute: '/register',
+      initialRoute: '/welcome',
       routes: {
         '/welcome': (context) => WelcomeScreen(),
         '/register': (context) => RegisterScreen(),

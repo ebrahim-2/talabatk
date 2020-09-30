@@ -16,6 +16,12 @@ class _HomeScreenState extends State<HomeScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   var cartProvider = Cartprovider();
+
+  @override
+  void initState() {
+    super.initState();
+    cartProvider.init();
+  }
   // final _auth =FirebaseAuth.instance;
 
   // void initState() {

@@ -34,35 +34,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
           padding: EdgeInsets.symmetric(
             horizontal: 24.0,
           ),
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 50,
-              ),
-              Header(),
-              SizedBox(
-                height: 24.0,
-              ),
-              NumberField(
-                handleChange: (value) {
-                  number = value;
-                },
-              ),
-              EmailField(
-                handleChange: (value) {
-                  email = value;
-                },
-              ),
-              PasswordField(
-                handleChange: (value) {
-                  password = value;
-                },
-              ),
-              SubmitButton(
-                handleSubmit: _handleSubmit,
-                text: 'Register',
-              ),
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 50,
+                ),
+                Header(),
+                SizedBox(
+                  height: 24.0,
+                ),
+                NumberField(
+                  handleChange: (value) {
+                    number = value;
+                  },
+                ),
+                EmailField(
+                  handleChange: (value) {
+                    email = value;
+                  },
+                ),
+                PasswordField(
+                  handleChange: (value) {
+                    password = value;
+                  },
+                ),
+                SubmitButton(
+                  handleSubmit: _handleSubmit,
+                  text: 'Register',
+                ),
+              ],
+            ),
           ),
         ),
       ),

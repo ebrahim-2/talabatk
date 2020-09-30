@@ -29,9 +29,8 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _controller = AnimationController(
-      duration: Duration(seconds: 1),
-    );
+    _controller =
+        AnimationController(duration: Duration(seconds: 1), vsync: this);
     _imageAnim = CurvedAnimation(parent: _controller, curve: Curves.ease);
     _controller.addListener(() {
       setState(() {});
@@ -87,7 +86,7 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.black54,
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
                   ),
                   SizedBox(
@@ -97,7 +96,7 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
                     '\$${widget.price}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 16,
                     ),
                   ),
                 ],

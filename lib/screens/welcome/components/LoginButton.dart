@@ -18,7 +18,7 @@ class LoginButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
           onPressed: () {
-            // Navigator.pushNamed(context, LoginScreen().id);
+            Navigator.pushNamed(context, '/login');
           },
           minWidth: 200.0,
           height: 42.0,

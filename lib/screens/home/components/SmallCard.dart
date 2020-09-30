@@ -32,9 +32,8 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _controller = AnimationController(
-      duration: Duration(seconds: 1),
-    );
+    _controller =
+        AnimationController(duration: Duration(seconds: 1), vsync: this);
     _imageAnim = CurvedAnimation(parent: _controller, curve: Curves.ease);
     _controller.addListener(() {
       setState(() {});
@@ -68,7 +67,23 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
           overflow: Overflow.visible,
           children: [
             Positioned(
-              bottom: 40,
+              top: -10,
+              right: 0,
+              left: 0,
+              child: AnimatedBuilder(
+                  animation: _imageAnim,
+                  builder: (context, snapshot) {
+                    return Transform.translate(
+                      offset: Offset(0.0, 200 * (1 - _imageAnim.value)),
+                      child: Image.asset(
+                        widget.image,
+                        width: _width / 2.8,
+                      ),
+                    );
+                  }),
+            ),
+            Positioned(
+              bottom: -30,
               right: 0,
               left: 0,
               child: Column(
@@ -107,7 +122,7 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
               ),
             ),
             Positioned(
-              bottom: -8,
+              bottom: -40,
               right: 0,
               left: 0,
               // width: (_width / 2),
@@ -132,22 +147,6 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              top: -20,
-              right: 0,
-              left: 0,
-              child: AnimatedBuilder(
-                  animation: _imageAnim,
-                  builder: (context, snapshot) {
-                    return Transform.translate(
-                      offset: Offset(0.0, 200 * (1 - _imageAnim.value)),
-                      child: Image.asset(
-                        widget.image,
-                        width: _width / 2.8,
-                      ),
-                    );
-                  }),
             ),
           ],
         ),

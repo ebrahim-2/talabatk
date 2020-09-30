@@ -10,12 +10,12 @@ var uuid = Uuid();
 class Cartprovider {
   List<dynamic> cartitems = [];
 
-  Cartprovider() {
-    init();
-  }
   init() async {
     var doc = await firestore.collection('users').doc(firebaseUser.uid).get();
-    cartitems = doc.data()['products'];
+
+    if (doc.data() != null) {
+      cartitems = doc.data()['products'];
+    }
   }
 
   additem(String title, double price) async {

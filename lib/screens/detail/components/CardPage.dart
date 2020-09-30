@@ -21,9 +21,8 @@ class _CardPageState extends State<CardPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    _controller = AnimationController(
-      duration: Duration(seconds: 1),
-    );
+    _controller =
+        AnimationController(duration: Duration(seconds: 1), vsync: this);
     _imageAnim =
         CurvedAnimation(parent: _controller, curve: Curves.easeOutBack);
     _controller.addListener(() {

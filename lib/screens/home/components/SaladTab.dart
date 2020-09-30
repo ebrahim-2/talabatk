@@ -24,103 +24,109 @@ class SaladTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Stack(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TopHeader(),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  SizedBox(
-                    height: _height * 0.09,
-                  ),
-                  BigCard(
-                    addItemSnackBar: addItemSnackBar,
-                    addNewItemToCart: addNewItemToCart,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailScreen(
-                            removeItemFromCart: removeItemFromCart,
-                            addNewItemToCart: addNewItemToCart,
-                            data: data,
-                            image: 'images/chicken.png',
-                            price: 5,
-                            title: 'Chicken Salad',
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TopHeader(),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: _height * 0.09,
+                    ),
+                    BigCard(
+                      addItemSnackBar: addItemSnackBar,
+                      addNewItemToCart: addNewItemToCart,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailScreen(
+                              removeItemFromCart: removeItemFromCart,
+                              addNewItemToCart: addNewItemToCart,
+                              data: data,
+                              image: 'images/chicken.png',
+                              price: 5,
+                              title: 'Chicken Salad',
+                            ),
                           ),
+                        );
+                      },
+                      title: 'Chicken Salad',
+                      image: 'images/chicken.png',
+                      price: 5,
+                      sub: 'Chicken with Avocado',
+                    ),
+                    SizedBox(
+                      height: _height * 0.08,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SmallCard(
+                          addItemSnackBar: addItemSnackBar,
+                          addNewItemToCart: addNewItemToCart,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailScreen(
+                                  removeItemFromCart: removeItemFromCart,
+                                  addNewItemToCart: addNewItemToCart,
+                                  data: data,
+                                  image: 'images/mixed.png',
+                                  price: 4.000,
+                                  title: 'Mixed Salad',
+                                ),
+                              ),
+                            );
+                          },
+                          title: 'Mixed Salad',
+                          image: 'images/mixed.png',
+                          price: 4.000,
+                          sub: 'Mix Vegetables',
                         ),
-                      );
-                    },
-                    title: 'Chicken Salad',
-                    image: 'images/chicken.png',
-                    price: 5,
-                    sub: 'Chicken with Avocado',
-                  ),
-                  SizedBox(
-                    height: _height * 0.05,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SmallCard(
-                        addItemSnackBar: addItemSnackBar,
-                        addNewItemToCart: addNewItemToCart,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                removeItemFromCart: removeItemFromCart,
-                                addNewItemToCart: addNewItemToCart,
-                                data: data,
-                                image: 'images/mixed.png',
-                                price: 4.000,
-                                title: 'Mixed Salad',
+                        SmallCard(
+                          addItemSnackBar: addItemSnackBar,
+                          addNewItemToCart: addNewItemToCart,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailScreen(
+                                  removeItemFromCart: removeItemFromCart,
+                                  addNewItemToCart: addNewItemToCart,
+                                  data: data,
+                                  image: 'images/mixed.png',
+                                  price: 4.500,
+                                  title: 'Quinoa Salad',
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        title: 'Mixed Salad',
-                        image: 'images/mixed.png',
-                        price: 4.000,
-                        sub: 'Mix Vegetables',
-                      ),
-                      SmallCard(
-                        addItemSnackBar: addItemSnackBar,
-                        addNewItemToCart: addNewItemToCart,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailScreen(
-                                removeItemFromCart: removeItemFromCart,
-                                addNewItemToCart: addNewItemToCart,
-                                data: data,
-                                image: 'images/mixed.png',
-                                price: 4.500,
-                                title: 'Quinoa Salad',
-                              ),
-                            ),
-                          );
-                        },
-                        title: 'Quinoa Salad',
-                        image: 'images/mixed.png',
-                        price: 4.500,
-                        sub: 'Spicy with garlic',
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                            );
+                          },
+                          title: 'Quinoa Salad',
+                          image: 'images/mixed.png',
+                          price: 4.500,
+                          sub: 'Spicy with garlic',
+                        ),
+                        SizedBox(
+                          height: 50,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
