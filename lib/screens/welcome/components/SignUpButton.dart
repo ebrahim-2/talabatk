@@ -27,7 +27,6 @@ class SignUpButton extends StatelessWidget {
             style: TextStyle(
               fontSize: 25.0,
               color: Colors.black87,
-              fontWeight: FontWeight.w900,
             ),
           ),
         ),

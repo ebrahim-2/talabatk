@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:talabatk/cart.dart';
-
-// import '../../../cart.dart';
 
 class SmallCard extends StatefulWidget {
   final String image;
@@ -52,24 +49,18 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
-    double _height = MediaQuery.of(context).size.height;
 
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        height: _height * 0.28,
         width: _width / 3,
         decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(_width),
         ),
-        child: Stack(
-          overflow: Overflow.visible,
+        child: Column(
           children: [
-            Positioned(
-              top: -10,
-              right: 0,
-              left: 0,
+            Container(
               child: AnimatedBuilder(
                   animation: _imageAnim,
                   builder: (context, snapshot) {
@@ -82,10 +73,7 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
                     );
                   }),
             ),
-            Positioned(
-              bottom: -30,
-              right: 0,
-              left: 0,
+            Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -121,12 +109,8 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
                 ],
               ),
             ),
-            Positioned(
-              bottom: -40,
-              right: 0,
-              left: 0,
-              // width: (_width / 2),
-              height: 30,
+            Container(
+              margin: EdgeInsets.only(top: 5),
               child: Container(
                 width: 30,
                 decoration: BoxDecoration(

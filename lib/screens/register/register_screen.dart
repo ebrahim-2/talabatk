@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 part './components/Header.dart';
@@ -16,8 +16,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final _auth = FirebaseAuth.instance;
-  final firestoreInstance = FirebaseFirestore.instance;
+  // final _auth = FirebaseAuth.instance;
+  // final firestoreInstance = FirebaseFirestore.instance;
 
   bool showSpinner = false;
   String email;
@@ -77,14 +77,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
       showSpinner = true;
     });
     try {
-      final newUser = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+      // final newUser = await _auth.createUserWithEmailAndPassword(
+      //   email: email,
+      //   password: password,
+      // );
 
-      if (newUser != null) {
-        Navigator.pushNamed(context, '/home');
-      }
+      // if (newUser != null) {
+      //   Navigator.pushNamed(context, '/home');
+      // }
 
       setState(() {
         showSpinner = false;

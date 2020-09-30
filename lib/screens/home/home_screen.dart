@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    cartProvider.init();
+    // cartProvider.init();
   }
   // final _auth =FirebaseAuth.instance;
 
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   removeItemFromCart(String id) {
-    cartProvider.removeItem(id);
+    // cartProvider.removeItem(id);
   }
 
   @override

@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
-  final _auth = FirebaseAuth.instance;
+  // final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Menu extends StatelessWidget {
                   tag: 'food',
                   child: Container(
                     child: Image.asset('images/food.gif'),
-                    height: 124.0,
+                    height: 80.0,
                   ),
                 ),
                 SizedBox(
@@ -31,7 +31,7 @@ class Menu extends StatelessWidget {
                   'Talabatk',
                   style: TextStyle(
                     fontFamily: 'Pacifico',
-                    fontSize: 40.0,
+                    fontSize: 20.0,
                     color: Colors.black87,
                   ),
                 ),
@@ -62,7 +62,7 @@ class Menu extends StatelessWidget {
               style: TextStyle(color: Colors.redAccent),
             ),
             onTap: () {
-              _auth.signOut();
+              // _auth.signOut();
               Navigator.pushNamed(context, '/welcome');
             },
           ),

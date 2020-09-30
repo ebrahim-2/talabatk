@@ -118,9 +118,6 @@ class SaladTab extends StatelessWidget {
                           price: 4.500,
                           sub: 'Spicy with garlic',
                         ),
-                        SizedBox(
-                          height: 50,
-                        )
                       ],
                     ),
                   ],

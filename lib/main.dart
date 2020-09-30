@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'screens/home/home_screen.dart';
@@ -7,9 +7,9 @@ import 'screens/welcome/welcome_screen.dart';
 import 'screens/register/register_screen.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   runApp(
     MyApp(),
   );
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       //     textTheme: TextTheme(bodyText2: TextStyle(color: Colors.black87))),
 
       theme: ThemeData(fontFamily: 'Poppins'),
-      initialRoute: '/welcome',
+      initialRoute: '/home',
       routes: {
         '/welcome': (context) => WelcomeScreen(),
         '/register': (context) => RegisterScreen(),
