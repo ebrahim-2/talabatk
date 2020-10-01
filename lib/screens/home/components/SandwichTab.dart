@@ -7,18 +7,38 @@ import 'TopHeader.dart';
 import 'BigCard.dart';
 
 class SandwichTab extends StatelessWidget {
-  const SandwichTab(
-      {this.addItemSnackBar,
-      this.context,
-      this.addNewItemToCart,
-      this.removeItemFromCart,
-      this.data});
-
   final Function addItemSnackBar;
   final Function addNewItemToCart;
   final Function removeItemFromCart;
-  final Cartprovider data;
-  final BuildContext context;
+  final Cartprovider cartData;
+
+  SandwichTab({
+    this.addItemSnackBar,
+    this.addNewItemToCart,
+    this.removeItemFromCart,
+    this.cartData,
+  });
+
+  final pizzaItem = ItemModel(
+    title: 'Pizza',
+    image: 'images/p1.png',
+    price: 12,
+    sub: 'All kinds of pizza',
+  );
+
+  final potatoItem = ItemModel(
+      image: 'images/p3.jpg',
+      price: 2.500,
+      title: 'Potato Fingers',
+      sub: 'Potato Fingers with salt');
+
+  final burgerItem = ItemModel(
+    title: 'Burger',
+    image: 'images/h3.png',
+    price: 7.00,
+    sub: 'All Kind of Burger',
+  );
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
@@ -49,20 +69,15 @@ class SandwichTab extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailScreen(
-                              data: data,
+                              cartData: cartData,
                               addNewItemToCart: addNewItemToCart,
                               removeItemFromCart: removeItemFromCart,
-                              image: 'images/p1.png',
-                              price: 12.000,
-                              title: 'Pizza',
+                              item: pizzaItem,
                             ),
                           ),
                         );
                       },
-                      title: 'Pizza',
-                      image: 'images/p1.png',
-                      price: 12,
-                      sub: 'All kinds of pizza',
+                      item: pizzaItem,
                     ),
                     SizedBox(
                       height: _height * 0.06,
@@ -78,20 +93,15 @@ class SandwichTab extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailScreen(
-                                  data: data,
+                                  cartData: cartData,
                                   addNewItemToCart: addNewItemToCart,
                                   removeItemFromCart: removeItemFromCart,
-                                  image: 'images/p3.jpg',
-                                  price: 2.500,
-                                  title: 'potato Fingers',
+                                  item: potatoItem,
                                 ),
                               ),
                             );
                           },
-                          title: 'potato Fingers ',
-                          image: 'images/p3.jpg',
-                          price: 2.5,
-                          sub: '',
+                          item: potatoItem,
                         ),
                         SmallCard(
                           addItemSnackBar: addItemSnackBar,
@@ -101,27 +111,19 @@ class SandwichTab extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailScreen(
-                                  data: data,
+                                  cartData: cartData,
                                   addNewItemToCart: addNewItemToCart,
                                   removeItemFromCart: removeItemFromCart,
-                                  image: 'images/h3.png',
-                                  price: 7.000,
-                                  title: 'Burger',
+                                  item: burgerItem,
                                 ),
                               ),
                             );
                           },
-                          title: 'Burger',
-                          image: 'images/h3.png',
-                          price: 7.00,
-                          sub: 'All Kind of Burger',
+                          item: burgerItem,
                         ),
                       ],
                     ),
                   ],
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
                 ),
               ],
             ),

@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+
 import '../../cart.dart';
 
 class CartPage extends StatelessWidget {
@@ -38,23 +41,26 @@ class CartPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(left: 16),
+                        margin: EdgeInsets.only(left: 16, bottom: 30),
                         child: Text(
                           'Ordered Products',
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 16),
                         child: DataTable(
                           columns: [
                             DataColumn(label: Text('Product')),
                             DataColumn(label: Text('Price')),
+                            DataColumn(label: Text('Quantity')),
+                            DataColumn(label: Text('Total Price')),
                           ],
                           rows: data.cartitems.map<DataRow>((e) {
                             return DataRow(cells: [
                               DataCell(Text(e['title'])),
                               DataCell(Text('${e['price']}')),
+                              DataCell(Text('${e['quantity']}')),
+                              DataCell(Text('${e['totalPrice']}')),
                             ]);
                           }).toList(),
                         ),
@@ -83,14 +89,16 @@ class CartPage extends StatelessWidget {
               Container(
                 margin: EdgeInsets.only(top: 30),
                 child: FlatButton(
-                  child: Text('Buy',
+                  child: Text('Buy And Deliver',
                       style: TextStyle(
                         color: Colors.white,
                       )),
                   color: Colors.black,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/map');
+                  },
                 ),
-              )
+              ),
             ],
           ),
         ),

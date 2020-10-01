@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
 
-class NameAndCount extends StatefulWidget {
+class NameAndCount extends StatelessWidget {
   final String title;
   final Function incrementPrice;
   final Function decrementPrice;
-  final double originalPrice;
   final double totalPrice;
+  final int counter;
 
   NameAndCount({
     @required this.title,
     this.incrementPrice,
     this.decrementPrice,
-    this.originalPrice,
     this.totalPrice,
+    this.counter,
   });
-
-  @override
-  _NameAndCountState createState() => _NameAndCountState();
-}
-
-class _NameAndCountState extends State<NameAndCount> {
-  int _count = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +32,7 @@ class _NameAndCountState extends State<NameAndCount> {
               ),
             ),
             Text(
-              widget.title,
+              title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -51,7 +44,7 @@ class _NameAndCountState extends State<NameAndCount> {
         Row(
           children: [
             GestureDetector(
-              onTap: _incr,
+              onTap: incrementPrice,
               child: Container(
                 width: 20,
                 height: 20,
@@ -70,14 +63,14 @@ class _NameAndCountState extends State<NameAndCount> {
               width: 8,
             ),
             Text(
-              "$_count",
+              "$counter",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(
               width: 8,
             ),
             GestureDetector(
-              onTap: _decr,
+              onTap: decrementPrice,
               child: Container(
                 width: 20,
                 height: 20,
@@ -96,22 +89,5 @@ class _NameAndCountState extends State<NameAndCount> {
         ),
       ],
     );
-  }
-
-  void _incr() {
-    setState(() {
-      _count++;
-      widget.incrementPrice();
-    });
-  }
-
-  void _decr() {
-    setState(() {
-      // ignore: unnecessary_statements
-      _count > 1 ? _count-- : null;
-      if (widget.originalPrice != widget.totalPrice) {
-        widget.decrementPrice();
-      }
-    });
   }
 }

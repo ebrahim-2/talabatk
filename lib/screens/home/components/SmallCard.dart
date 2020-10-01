@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:talabatk/cart.dart';
 
 class SmallCard extends StatefulWidget {
-  final String image;
-  final String title;
-  final String sub;
-  final double price;
+  final ItemModel item;
   final Function onTap;
   final Function addItemSnackBar;
   final Function addNewItemToCart;
 
   SmallCard({
-    @required this.image,
-    @required this.title,
-    @required this.sub,
-    @required this.price,
     @required this.onTap,
     this.addItemSnackBar,
     this.addNewItemToCart,
+    this.item,
   });
 
   @override
@@ -53,10 +48,18 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
+        margin: EdgeInsets.only(bottom: 20),
         width: _width / 3,
         decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(_width),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              blurRadius: 5,
+              offset: Offset(0, 6), // changes position of shadow
+            ),
+          ],
         ),
         child: Column(
           children: [
@@ -67,7 +70,7 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
                     return Transform.translate(
                       offset: Offset(0.0, 200 * (1 - _imageAnim.value)),
                       child: Image.asset(
-                        widget.image,
+                        widget.item.image,
                         width: _width / 2.8,
                       ),
                     );
@@ -79,7 +82,7 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    widget.title,
+                    widget.item.title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
@@ -89,7 +92,7 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
                     height: 4,
                   ),
                   Text(
-                    widget.sub,
+                    widget.item.sub,
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.black54,
@@ -100,7 +103,7 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
                     height: 4,
                   ),
                   Text(
-                    '\$${widget.price}',
+                    '\$${widget.item.price}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
@@ -120,8 +123,8 @@ class _SmallCardState extends State<SmallCard> with TickerProviderStateMixin {
                 child: Center(
                   child: IconButton(
                     onPressed: () {
-                      widget.addNewItemToCart(widget.title, widget.price);
-                      widget.addItemSnackBar(widget.title);
+                      widget.addNewItemToCart(widget.item);
+                      widget.addItemSnackBar(widget.item.title);
                     },
                     icon: Icon(
                       Icons.add,

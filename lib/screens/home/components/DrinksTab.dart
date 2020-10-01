@@ -8,18 +8,32 @@ import 'TopHeader.dart';
 import 'BigCard.dart';
 
 class DrinksTab extends StatelessWidget {
-  const DrinksTab(
-      {this.addItemSnackBar,
-      this.context,
-      this.addNewItemToCart,
-      this.removeItemFromCart,
-      this.data});
-
   final Function addItemSnackBar;
   final Function addNewItemToCart;
   final Function removeItemFromCart;
-  final Cartprovider data;
-  final BuildContext context;
+  final Cartprovider cartData;
+
+  DrinksTab({
+    this.addItemSnackBar,
+    this.addNewItemToCart,
+    this.removeItemFromCart,
+    this.cartData,
+  });
+
+  final cokeItem = ItemModel(
+    title: 'CokeCola',
+    image: 'images/co3.png',
+    price: 30,
+    sub: 'CokeCola classic',
+  );
+
+  final orangeItem = ItemModel(
+    title: 'Orange juice',
+    image: 'images/co2.jpg',
+    price: 24,
+    sub: 'Orange juice with ice',
+  );
+
   @override
   Widget build(BuildContext context) {
     double _height = MediaQuery.of(context).size.height;
@@ -50,20 +64,15 @@ class DrinksTab extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailScreen(
-                              data: data,
+                              cartData: cartData,
                               removeItemFromCart: removeItemFromCart,
                               addNewItemToCart: addNewItemToCart,
-                              image: 'images/h1.jpg',
-                              price: 30.00,
-                              title: 'Chicken Salad',
+                              item: cokeItem,
                             ),
                           ),
                         );
                       },
-                      title: 'Chicken Salad',
-                      image: 'images/co3.png',
-                      price: 30,
-                      sub: 'Chicken with Avocado',
+                      item: cokeItem,
                     ),
                     SizedBox(
                       height: _height * 0.06,
@@ -79,20 +88,15 @@ class DrinksTab extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailScreen(
-                                  data: data,
+                                  cartData: cartData,
                                   removeItemFromCart: removeItemFromCart,
                                   addNewItemToCart: addNewItemToCart,
-                                  image: 'images/mixed.png',
-                                  price: 24.00,
-                                  title: 'Mixed Salad',
+                                  item: orangeItem,
                                 ),
                               ),
                             );
                           },
-                          title: 'Mixed Salad',
-                          image: 'images/co2.jpg',
-                          price: 24,
-                          sub: 'Mix Vegetables',
+                          item: orangeItem,
                         ),
                         SmallCard(
                           addItemSnackBar: addItemSnackBar,
@@ -102,27 +106,19 @@ class DrinksTab extends StatelessWidget {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => DetailScreen(
-                                  data: data,
+                                  cartData: cartData,
                                   removeItemFromCart: removeItemFromCart,
                                   addNewItemToCart: addNewItemToCart,
-                                  image: 'images/mixed.png',
-                                  price: 24.00,
-                                  title: 'Quinoa Salad',
+                                  item: orangeItem,
                                 ),
                               ),
                             );
                           },
-                          title: 'Quinoa Salad',
-                          image: 'images/co2.jpg',
-                          price: 24.00,
-                          sub: 'Spicy with garlic',
+                          item: orangeItem,
                         ),
                       ],
                     ),
                   ],
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
                 ),
               ],
             ),

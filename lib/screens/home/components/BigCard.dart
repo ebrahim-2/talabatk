@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:talabatk/cart.dart';
 
 class BigCard extends StatefulWidget {
-  final String title;
-  final String sub;
-  final String image;
-  final double price;
+  final ItemModel item;
   final Function onTap;
   final Function addItemSnackBar;
   final Function addNewItemToCart;
 
   BigCard({
     @required this.onTap,
-    @required this.title,
-    @required this.image,
-    @required this.sub,
-    @required this.price,
     this.addItemSnackBar,
     this.addNewItemToCart,
+    this.item,
   });
 
   @override
@@ -59,6 +54,13 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
         decoration: BoxDecoration(
           color: Colors.grey[100],
           borderRadius: BorderRadius.circular(_width),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.3),
+              blurRadius: 5,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
         ),
         child: Stack(
           overflow: Overflow.visible,
@@ -72,7 +74,7 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.title,
+                    widget.item.title,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -82,7 +84,7 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
                     height: 8,
                   ),
                   Text(
-                    widget.sub,
+                    widget.item.sub,
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       color: Colors.black54,
@@ -93,7 +95,7 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
                     height: 8,
                   ),
                   Text(
-                    '\$${widget.price}',
+                    '\$${widget.item.price}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -120,8 +122,8 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
                         size: 16,
                       ),
                       onPressed: () {
-                        widget.addNewItemToCart(widget.title, widget.price);
-                        widget.addItemSnackBar(widget.title);
+                        widget.addNewItemToCart(widget.item);
+                        widget.addItemSnackBar(widget.item.title);
                       },
                     ),
                   ),
@@ -138,7 +140,7 @@ class _ChickenCardState extends State<BigCard> with TickerProviderStateMixin {
                     return Transform.translate(
                       offset: Offset(_width * (1 - _imageAnim.value), 0),
                       child: Image.asset(
-                        widget.image,
+                        widget.item.image,
                         width: _width * 0.5,
                       ),
                     );

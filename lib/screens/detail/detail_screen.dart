@@ -7,20 +7,16 @@ import 'components/DisplayPageIndicators.dart';
 import 'components/NameAndCount.dart';
 
 class DetailScreen extends StatefulWidget {
-  final String image;
-  final String title;
-  final double price;
   final Function addNewItemToCart;
   final Function removeItemFromCart;
-  final Cartprovider data;
+  final ItemModel item;
+  final Cartprovider cartData;
 
   DetailScreen({
-    @required this.image,
-    @required this.title,
-    @required this.price,
-    @required this.data,
     @required this.addNewItemToCart,
     @required this.removeItemFromCart,
+    @required this.item,
+    this.cartData,
   });
 
   @override
@@ -31,13 +27,12 @@ class _DetailScreenState extends State<DetailScreen>
     with TickerProviderStateMixin {
   ValueNotifier<int> _pageViewNotifier = ValueNotifier(0);
   double totalPrice;
-  int counter;
+  int counter = 1;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
-    totalPrice = widget.price;
-    widget.addNewItemToCart(widget.title, widget.price);
+    totalPrice = widget.item.price;
     super.initState();
   }
 
@@ -50,7 +45,7 @@ class _DetailScreenState extends State<DetailScreen>
         label: 'Go to cart',
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return CartPage(data: widget.data);
+            return CartPage(data: widget.cartData);
           }));
         },
       ),
@@ -78,7 +73,7 @@ class _DetailScreenState extends State<DetailScreen>
             children: [
               CardPage(
                 pageViewNotifier: _pageViewNotifier,
-                image: widget.image,
+                image: widget.item.image,
               ),
               DisplayPageIndicators(
                 length: 3,
@@ -90,22 +85,22 @@ class _DetailScreenState extends State<DetailScreen>
               Padding(
                 padding: EdgeInsets.only(left: 16, right: 16),
                 child: NameAndCount(
-                    title: widget.title,
-                    originalPrice: widget.price,
+                    title: widget.item.title,
+                    counter: counter,
                     totalPrice: totalPrice,
                     incrementPrice: () {
                       setState(() {
-                        // counter++;
-                        totalPrice += widget.price;
+                        counter++;
+                        totalPrice += widget.item.price;
                       });
-                      widget.addNewItemToCart(widget.title, widget.price);
+                      widget.addNewItemToCart(widget.item);
                     },
                     decrementPrice: () {
                       setState(() {
-                        // counter--;
-                        totalPrice -= widget.price;
+                        counter--;
+                        totalPrice -= widget.item.price;
                       });
-                      widget.removeItemFromCart();
+                      widget.removeItemFromCart(widget.item.id);
                     }),
               ),
               SizedBox(
@@ -163,7 +158,10 @@ class _DetailScreenState extends State<DetailScreen>
                 child: BottomHeader(
                     price: totalPrice,
                     addItemSnackBar: addItemSnackBar,
-                    title: widget.title),
+                    addNewItemToCart: widget.addNewItemToCart,
+                    item: widget.item,
+                    title: widget.item.title,
+                    counter: counter),
               ),
             ],
           ),

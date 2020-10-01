@@ -55,8 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
     ));
   }
 
-  addNewItemToCart(String title, double price) {
-    cartProvider.additem(title, price);
+  addNewItemToCart(ItemModel item) {
+    cartProvider.additem(item);
   }
 
   removeItemFromCart(String id) {
@@ -122,19 +122,19 @@ class _HomeScreenState extends State<HomeScreen> {
             height: _height,
             addItemSnackBar: addItemSnackBar,
             addNewItemToCart: addNewItemToCart,
-            data: cartProvider,
+            cartData: cartProvider,
             removeItemFromCart: removeItemFromCart,
           ),
           SandwichTab(
             addItemSnackBar: addItemSnackBar,
             addNewItemToCart: addNewItemToCart,
-            data: cartProvider,
+            cartData: cartProvider,
             removeItemFromCart: removeItemFromCart,
           ),
           DrinksTab(
             addItemSnackBar: addItemSnackBar,
             addNewItemToCart: addNewItemToCart,
-            data: cartProvider,
+            cartData: cartProvider,
             removeItemFromCart: removeItemFromCart,
           ),
         ],

@@ -6,12 +6,12 @@ import 'package:talabatk/screens/home/components/SmallCard.dart';
 import 'package:talabatk/screens/home/components/TopHeader.dart';
 
 class SaladTab extends StatelessWidget {
-  const SaladTab({
+  SaladTab({
     Key key,
     @required double height,
     this.addItemSnackBar,
     this.addNewItemToCart,
-    this.data,
+    this.cartData,
     this.removeItemFromCart,
   })  : _height = height,
         super(key: key);
@@ -20,7 +20,27 @@ class SaladTab extends StatelessWidget {
   final Function addItemSnackBar;
   final Function addNewItemToCart;
   final Function removeItemFromCart;
-  final Cartprovider data;
+  final Cartprovider cartData;
+
+  final chickenSalad = ItemModel(
+    title: 'Chicken Salad',
+    image: 'images/chicken.png',
+    price: 5,
+    sub: 'Chicken with Avocado',
+  );
+
+  final mixedSalad = ItemModel(
+      title: 'Mixed Salad',
+      image: 'images/mixed.png',
+      price: 5,
+      sub: 'Mix Vegetables');
+
+  final quinoaSalad = ItemModel(
+    title: 'Quinoa Salad',
+    image: 'images/mixed.png',
+    price: 4.5,
+    sub: 'Spicy with garlic',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -44,28 +64,22 @@ class SaladTab extends StatelessWidget {
                       height: _height * 0.09,
                     ),
                     BigCard(
-                      addItemSnackBar: addItemSnackBar,
-                      addNewItemToCart: addNewItemToCart,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailScreen(
-                              removeItemFromCart: removeItemFromCart,
-                              addNewItemToCart: addNewItemToCart,
-                              data: data,
-                              image: 'images/chicken.png',
-                              price: 5,
-                              title: 'Chicken Salad',
+                        addItemSnackBar: addItemSnackBar,
+                        addNewItemToCart: addNewItemToCart,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(
+                                removeItemFromCart: removeItemFromCart,
+                                addNewItemToCart: addNewItemToCart,
+                                item: chickenSalad,
+                                cartData: cartData,
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                      title: 'Chicken Salad',
-                      image: 'images/chicken.png',
-                      price: 5,
-                      sub: 'Chicken with Avocado',
-                    ),
+                          );
+                        },
+                        item: chickenSalad),
                     SizedBox(
                       height: _height * 0.08,
                     ),
@@ -73,28 +87,22 @@ class SaladTab extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SmallCard(
-                          addItemSnackBar: addItemSnackBar,
-                          addNewItemToCart: addNewItemToCart,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => DetailScreen(
-                                  removeItemFromCart: removeItemFromCart,
-                                  addNewItemToCart: addNewItemToCart,
-                                  data: data,
-                                  image: 'images/mixed.png',
-                                  price: 4.000,
-                                  title: 'Mixed Salad',
+                            addItemSnackBar: addItemSnackBar,
+                            addNewItemToCart: addNewItemToCart,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => DetailScreen(
+                                    removeItemFromCart: removeItemFromCart,
+                                    addNewItemToCart: addNewItemToCart,
+                                    cartData: cartData,
+                                    item: mixedSalad,
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          title: 'Mixed Salad',
-                          image: 'images/mixed.png',
-                          price: 4.000,
-                          sub: 'Mix Vegetables',
-                        ),
+                              );
+                            },
+                            item: mixedSalad),
                         SmallCard(
                           addItemSnackBar: addItemSnackBar,
                           addNewItemToCart: addNewItemToCart,
@@ -105,18 +113,13 @@ class SaladTab extends StatelessWidget {
                                 builder: (context) => DetailScreen(
                                   removeItemFromCart: removeItemFromCart,
                                   addNewItemToCart: addNewItemToCart,
-                                  data: data,
-                                  image: 'images/mixed.png',
-                                  price: 4.500,
-                                  title: 'Quinoa Salad',
+                                  cartData: cartData,
+                                  item: quinoaSalad,
                                 ),
                               ),
                             );
                           },
-                          title: 'Quinoa Salad',
-                          image: 'images/mixed.png',
-                          price: 4.500,
-                          sub: 'Spicy with garlic',
+                          item: quinoaSalad,
                         ),
                       ],
                     ),

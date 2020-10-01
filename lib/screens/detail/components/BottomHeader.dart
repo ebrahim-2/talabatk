@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:talabatk/cart.dart';
 
 class BottomHeader extends StatelessWidget {
   final double price;
   final Function addItemSnackBar;
+  final Function addNewItemToCart;
   final String title;
-  BottomHeader({@required this.price, this.addItemSnackBar, this.title});
+  final ItemModel item;
+  final int counter;
+
+  BottomHeader({
+    @required this.price,
+    this.addItemSnackBar,
+    this.title,
+    this.addNewItemToCart,
+    this.item,
+    this.counter,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +52,8 @@ class BottomHeader extends StatelessWidget {
               )),
           color: Colors.black,
           onPressed: () {
+            item.quantity += counter;
+            addNewItemToCart(item);
             addItemSnackBar(title);
           },
         )
