@@ -1,24 +1,72 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:talabatk/screens/cart/Map.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../cart.dart';
 
-class CartPage extends StatelessWidget {
-  const CartPage({this.data});
+final firestore = FirebaseFirestore.instance;
+final firebaseUser = FirebaseAuth.instance.currentUser;
+
+class CartScreen extends StatefulWidget {
+  const CartScreen({this.data});
   final Cartprovider data;
+
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> {
   getTotalPrice() {
     double total = 0;
-    data
+    widget.data
       ..cartitems.forEach((element) {
         total += element['price'];
       });
     return total;
   }
 
+  List<Marker> markers = [];
+  double zoom = 10;
+
+  updateMarker(newMarker) {
+    setState(() {
+      markers = [];
+      markers.add(newMarker);
+    });
+  }
+
+  updateZoom(double newZoom) {
+    setState(() {
+      zoom = newZoom;
+    });
+  }
+
+  fetchLocation() async {
+    await firestore
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .get()
+        .then((document) {
+      if (document.data() != null) {
+        var location = document.data()['location'];
+        zoom = document.data()['zoom'];
+        markers.add(
+          Marker(
+            markerId: MarkerId(location['markerId']),
+            position: LatLng(
+              location['position'][0],
+              location['position'][1],
+            ),
+          ),
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(data.cartitems);
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -47,24 +95,26 @@ class CartPage extends StatelessWidget {
                           style: Theme.of(context).textTheme.headline5,
                         ),
                       ),
-                      Container(
-                        child: DataTable(
-                          columns: [
-                            DataColumn(label: Text('Product')),
-                            DataColumn(label: Text('Price')),
-                            DataColumn(label: Text('Quantity')),
-                            DataColumn(label: Text('Total Price')),
-                          ],
-                          rows: data.cartitems.map<DataRow>((e) {
-                            return DataRow(cells: [
-                              DataCell(Text(e['title'])),
-                              DataCell(Text('${e['price']}')),
-                              DataCell(Text('${e['quantity']}')),
-                              DataCell(Text('${e['totalPrice']}')),
-                            ]);
-                          }).toList(),
+                      if (widget.data.cartitems.length > 0)
+                        Container(
+                          child: DataTable(
+                            dataTextStyle: TextStyle(fontSize: 12),
+                            columns: [
+                              DataColumn(label: Text('Product')),
+                              DataColumn(label: Text('Price')),
+                              DataColumn(label: Text('Quantity')),
+                              DataColumn(label: Text('Total Price')),
+                            ],
+                            rows: widget.data.cartitems.map<DataRow>((e) {
+                              return DataRow(cells: [
+                                DataCell(Text(e['title'])),
+                                DataCell(Text('${e['price']}')),
+                                DataCell(Text('${e['quantity']}')),
+                                DataCell(Text('${e['totalPrice']}')),
+                              ]);
+                            }).toList(),
+                          ),
                         ),
-                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -86,6 +136,74 @@ class CartPage extends StatelessWidget {
                       )
                     ]),
               ),
+              SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: Container(
+                  height: 310,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[300]),
+                      borderRadius: BorderRadius.circular(10)),
+                  width: size.width * 0.9,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15, left: 15),
+                        child: Text('Add Location',
+                            style: Theme.of(context).textTheme.headline6),
+                      ),
+                      Spacer(),
+                      FutureBuilder(
+                          future: fetchLocation(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(
+                                  child: Text('Please wait its loading...'));
+                            } else {
+                              if (snapshot.hasError)
+                                return Center(
+                                    child: Text('Error: ${snapshot.error}'));
+                              else
+                                return Container(
+                                  child: MyCustomMap(
+                                    markers: markers,
+                                    updateZoom: updateZoom,
+                                    cameraPosition: CameraPosition(
+                                      target: markers.length > 0
+                                          ? markers[0].position
+                                          : LatLng(33.312805, 44.361488),
+                                      zoom: zoom,
+                                    ),
+                                    zoomControlsEnabled: false,
+                                    handleTap: (LatLng tappedPoint) {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => MapSample(
+                                              updateMarker: updateMarker,
+                                              updateZoom: updateZoom,
+                                              cameraPosition: CameraPosition(
+                                                target: markers.length > 0
+                                                    ? markers[0].position
+                                                    : LatLng(
+                                                        33.312805, 44.361488),
+                                                zoom: zoom,
+                                              )),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                  height: 250,
+                                ); // snapshot.data  :- get your object which is pass from your downloadData() function
+                            }
+                          })
+                    ],
+                  ),
+                ),
+              ),
               Container(
                 margin: EdgeInsets.only(top: 30),
                 child: FlatButton(
@@ -94,9 +212,7 @@ class CartPage extends StatelessWidget {
                         color: Colors.white,
                       )),
                   color: Colors.black,
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/map');
-                  },
+                  onPressed: () {},
                 ),
               ),
             ],

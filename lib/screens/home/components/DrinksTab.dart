@@ -31,7 +31,7 @@ class DrinksTab extends StatelessWidget {
     title: 'Orange juice',
     image: 'images/co2.jpg',
     price: 24,
-    sub: 'Orange juice with ice',
+    sub: 'Juice with ice',
   );
 
   @override
@@ -75,7 +75,7 @@ class DrinksTab extends StatelessWidget {
                       item: cokeItem,
                     ),
                     SizedBox(
-                      height: _height * 0.06,
+                      height: _height * 0.10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,

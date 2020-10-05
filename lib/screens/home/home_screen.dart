@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         label: 'Go to cart',
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return CartPage(data: cartProvider);
+            return CartScreen(data: cartProvider);
           }));
         },
       ),
@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return CartPage(data: cartProvider);
+                        return CartScreen(data: cartProvider);
                       },
                     ));
                   },

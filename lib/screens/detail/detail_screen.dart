@@ -45,7 +45,7 @@ class _DetailScreenState extends State<DetailScreen>
         label: 'Go to cart',
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return CartPage(data: widget.cartData);
+            return CartScreen(data: widget.cartData);
           }));
         },
       ),
