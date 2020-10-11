@@ -1,8 +1,8 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 part './components/Header.dart';
 part 'components/SubmitButton.dart';
@@ -17,7 +17,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _auth = FirebaseAuth.instance;
-  // final firestoreInstance = FirebaseFirestore.instance;
+  final firestore = FirebaseFirestore.instance;
 
   bool showSpinner = false;
   String email;
@@ -83,6 +83,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
 
       if (newUser != null) {
+        await firestore.collection('users').doc(newUser.user.uid).set(
+          {"phoneNumber": number},
+          SetOptions(merge: true),
+        );
         Navigator.pushNamed(context, '/home');
       }
 
