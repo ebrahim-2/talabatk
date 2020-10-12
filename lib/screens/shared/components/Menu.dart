@@ -1,5 +1,7 @@
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:talabatk/screens/orders_screen.dart';
+import 'package:talabatk/screens/profile_screen.dart';
 
 class Menu extends StatelessWidget {
   // final _auth = FirebaseAuth.instance;
@@ -44,7 +46,12 @@ class Menu extends StatelessWidget {
               // Update the state of the app
               // ...
               // Then close the drawer
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfileScreen(),
+                ),
+              );
             },
           ),
           ListTile(
@@ -53,13 +60,18 @@ class Menu extends StatelessWidget {
               // Update the state of the app
               // ...
               // Then close the drawer
-              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OrdersScreen(),
+                ),
+              );
             },
           ),
           ListTile(
             title: Text(
               'Logout',
-              style: TextStyle(color: Colors.redAccent),
+              style: TextStyle(color: Colors.red),
             ),
             onTap: () {
               // _auth.signOut();
