@@ -16,16 +16,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   _getUserInfo() async {
     var doc = await firestore.collection('users').doc(firebaseUser.uid).get();
-    setState(() {
-      phoneNumber = doc.data()['phoneNumber'];
-      email = firebaseUser.email;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getUserInfo();
+    phoneNumber = doc.data()['phoneNumber'];
+    email = firebaseUser.email;
   }
 
   @override
@@ -54,17 +46,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SizedBox(
               height: 10,
             ),
-            Text(
-              phoneNumber,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              email,
-              style: Theme.of(context).textTheme.headline6,
-            ),
+            FutureBuilder(
+                future: _getUserInfo(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  }
+                  return Column(
+                    children: [
+                      Text(
+                        phoneNumber,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        email,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ],
+                  );
+                })
           ],
         ),
       ),

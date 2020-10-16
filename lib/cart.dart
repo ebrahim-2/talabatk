@@ -38,10 +38,10 @@ class Cartprovider {
     if (addNewItem) {
       cartitems.add(item.toMap());
     }
-    // firestore
-    //     .collection("users")
-    //     .doc(firebaseUser.uid)
-    //     .set({"products": cartitems}, SetOptions(merge: true));
+    firestore
+        .collection("users")
+        .doc(firebaseUser.uid)
+        .set({"products": cartitems}, SetOptions(merge: true));
   }
 
   // removeItem(String id) {

@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:talabatk/screens/orders_screen.dart';
 import 'package:talabatk/screens/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+final firebaseUser = FirebaseAuth.instance;
 
 class Menu extends StatelessWidget {
   // final _auth = FirebaseAuth.instance;
@@ -74,7 +77,7 @@ class Menu extends StatelessWidget {
               style: TextStyle(color: Colors.red),
             ),
             onTap: () {
-              // _auth.signOut();
+              firebaseUser.signOut();
               Navigator.pushNamed(context, '/welcome');
             },
           ),
